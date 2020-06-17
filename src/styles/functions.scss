@@ -1,0 +1,58 @@
+$breakpoints: (
+  "cel": (
+    min-width: 640px,
+  ),
+  "tablet": (
+    min-width: 765px,
+  ),
+  "pc": (
+    min-width: 1024px,
+  ),
+  "xl": (
+    min-width: 1500px,
+  ),
+) !default;
+
+$breakaux: ("tablet", "pc", "lg") !default;
+
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+          + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+@mixin multi($property, $cel, $tablet, $pc, $xl) {
+  #{$property}: $cel;
+  @include respond-to("tablet") {
+    #{$property}: $tablet;
+  }
+  @include respond-to("pc") {
+    #{$property}: $pc;
+  }
+  @include respond-to("xl") {
+    #{$property}: $xl;
+  }
+}
+
+@keyframes maxi {
+  from {
+    transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
