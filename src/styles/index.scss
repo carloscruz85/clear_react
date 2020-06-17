@@ -1,0 +1,25 @@
+@import "./vars.scss";
+@import "./functions.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+@mixin center-center() {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@mixin full-full {
+  width: 100vw;
+  height: 100vh;
+}
+
+@mixin back-image {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
